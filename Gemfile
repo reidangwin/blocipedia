@@ -23,7 +23,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'rails-controller-testing'
   gem 'shoulda'
-  gem 'factory_girl_rails', '~> 4.0'
   gem "better_errors"
   gem "binding_of_caller"
 end
@@ -50,3 +49,4 @@ end
 
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'devise-bootstrap-views'

@@ -1,0 +1,16 @@
+<h1>Edit Wiki</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <p>Guidelines for wikis</p>
+    <ul>
+      <li>No swearing</li>
+      <li>Defamatory or pejorative remarks will be removed</li>
+      <li>Good punctuation and grammar are key</li>
+    </ul>
+  </div>
+
+  <div class="col-md-8">
+    <%= render partial: 'form', locals: { wiki: @wiki } %>
+  </div>
+</div>
