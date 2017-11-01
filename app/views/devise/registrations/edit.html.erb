@@ -39,9 +39,9 @@
 <h3>Account changes</h3>
 
 <% if current_user.role == 'premium' %>
-    <p>Go back to the free standard
-      plan <%= button_to "Downgrade", downgrade_account_path, data: {confirm: "Are you sure?"}, method: :post %></p>
+    <p>Go back to the free standard. Note: All your private wikis will be made public.
+      plan <%= button_to "Downgrade", downgrade_account_path, data: {confirm: "Are you sure you want to downgrade and make your private wikis public?"}, method: :post %></p>
 <% end %>
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: {confirm: "Are you sure you want to cancel your account?"}, method: :delete %></p>
 
 <%= link_to "Back", :back %>
