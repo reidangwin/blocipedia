@@ -37,7 +37,14 @@
       </div>
 
   <% end %>
+
+<% if current_user && current_user.role == 'standard' && controller.controller_name != "charges"%>
+<p class="text-center">You are using a free account and will not be able to create private wikis.
+  <%= link_to 'Upgrade', new_charge_path, class: 'btn btn-success' %>
+</p>
+<% end %>
 </div>
+
 <%= yield %>
 </body>
 </html>
