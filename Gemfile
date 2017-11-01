@@ -25,6 +25,8 @@ group :development, :test do
   gem 'shoulda'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'virb'
+  gem 'pry-rails'
 end
 
 # Use Puma as the app server
@@ -50,3 +52,4 @@ end
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'devise-bootstrap-views'
+gem 'pundit'
