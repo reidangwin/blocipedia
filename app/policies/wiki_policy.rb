@@ -1,9 +1,17 @@
 class WikiPolicy < ApplicationPolicy
   attr_reader :user, :record
 
-  def initialize(user, record)
+  def initialize(user, wiki)
     @user = user
-    @record = record
+    @wiki = wiki
+  end
+
+  def permitted_attributes
+    if !user.standard?
+      [:title, :body, :private]
+    else
+      [:title, :body]
+    end
   end
 
   def index?
@@ -11,11 +19,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(:id => @wiki.id).exists?
   end
 
   def create?
-    user.present?
+    @user.present?
   end
 
   def new?
@@ -23,7 +31,9 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    !record.private or record.user == user
+    !@wiki.private or @wiki.user == @user
+
+
   end
 
   def edit?
@@ -31,11 +41,11 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? or record.user == user
+    @user.admin? or @wiki.user == user
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    Pundit.policy_scope!(user, @wiki.class)
   end
 
   class Scope

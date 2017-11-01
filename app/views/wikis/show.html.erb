@@ -11,4 +11,7 @@
   <div class="col-md-8">
     <p><%= @wiki.body %></p>
   </div>
+
 </div>
+
+<%= link_to 'Edit', edit_wiki_path(@wiki), {class: 'btn btn-success'} %>
