@@ -3,10 +3,12 @@ class WikisController < ApplicationController
 
   def index
     authorize Wiki
-    if current_user.admin?
+    if current_user && current_user.admin?
       @wikis = Wiki.all
-    else
+    elsif current_user
       @wikis = current_user.wikis + Wiki.where(private: false)
+    else
+      @wikis = Wiki.where(private: false)
     end
   end
 
