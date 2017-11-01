@@ -17,6 +17,7 @@
 
     <%= form_group_tag(wiki.errors[:body]) do %>
         <%= f.label :body %>
+        <p>You can use markdown syntax to style your wiki. Refer to the <%= link_to 'markdown documentation', 'https://daringfireball.net/projects/markdown/syntax' %> for more information.</p>
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
     <% end %>
 
