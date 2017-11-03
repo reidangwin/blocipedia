@@ -31,9 +31,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def update?
-    !@wiki.private or @wiki.user == @user
-
-
+    !@wiki.private or @wiki.user == @user or @wiki.collaborators.pluck(:user_id).include?(user.id)
   end
 
   def edit?
@@ -57,7 +55,26 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope
+      wikis = []
+      if user.role == 'admin'
+        wikis = scope.all
+      elsif user.role == 'premium'
+        all_wikis = scope.all
+        all_wikis.each do |wiki|
+          if !wiki.private? || wiki.user == user || wiki.collaborators.pluck(:user_id).include?(user.id)
+            wikis << wiki
+          end
+        end
+      else
+        all_wikis = scope.all
+        wikis = []
+        all_wikis.each do |wiki|
+          if !wiki.private? || wiki.collaborators.pluck(:user_id).include?(user.id)
+            wikis << wiki
+          end
+        end
+      end
+      Wiki.where(id: wikis.map(&:id))
     end
   end
 end

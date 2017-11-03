@@ -3,13 +3,7 @@ class WikisController < ApplicationController
 
   def index
     authorize Wiki
-    if current_user && current_user.admin?
-      @wikis = Wiki.all
-    elsif current_user
-      @wikis = current_user.wikis + Wiki.where(private: false)
-    else
-      @wikis = Wiki.where(private: false)
-    end
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -34,9 +28,10 @@ class WikisController < ApplicationController
       render :new
     end
   end
-
+j
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.where.not(role: 'admin')
     authorize @wiki
   end
 

@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   post '/downgrade-account' => 'charges#downgrade', as: :downgrade_account
 
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+  end
 end

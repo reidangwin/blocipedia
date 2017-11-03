@@ -13,4 +13,11 @@
   <div class="col-md-8">
     <%= render partial: 'form', locals: { wiki: @wiki } %>
   </div>
+
+  <%=
+  if current_user == @wiki.user
+      render partial: 'collaborators/add_collaborator', locals: {wiki: @wiki, users: @users}
+    end
+  %>
+
 </div>
