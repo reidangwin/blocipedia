@@ -57,3 +57,5 @@ gem 'faker'
 gem 'stripe'
 gem 'figaro'
 gem 'redcarpet', '~> 3.4'
+gem 'growlyflash'
+

@@ -28,7 +28,7 @@ class WikisController < ApplicationController
       render :new
     end
   end
-j
+
   def edit
     @wiki = Wiki.find(params[:id])
     @users = User.where.not(role: 'admin')

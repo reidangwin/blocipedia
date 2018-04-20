@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'welcome/about'
 
-  post '/downgrade-account' => 'charges#downgrade', as: :downgrade_account
+  post '/downgrade-account', to:'charges#downgrade', as: :downgrade_account
 
   devise_for :users
 
